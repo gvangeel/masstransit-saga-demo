@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.Contracts", "src\MassTransit.Saga.Demo.Contracts\MassTransit.Saga.Demo.Contracts.csproj", "{AC7A0FB5-D69C-4CC7-AF4A-3E867FEA5F13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.HotelService", "src\MassTransit.Saga.Demo.HotelService\MassTransit.Saga.Demo.HotelService.csproj", "{A249EC62-65BD-49E7-8B9E-302D1182F09C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Common", "src\MassTransit.Common\MassTransit.Common.csproj", "{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.TransportationService", "src\MassTransit.Saga.Demo.TransportationService\MassTransit.Saga.Demo.TransportationService.csproj", "{EE912291-A097-4ECB-9E24-4B9498A586A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.TripService", "src\MassTransit.Saga.Demo.TripService\MassTransit.Saga.Demo.TripService.csproj", "{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{EEC10352-32C1-4158-888F-D27EF9E7ED53}"
+	ProjectSection(SolutionItems) = preProject
+		diagram.png = diagram.png
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "masstransit", "masstransit.dcproj", "{F817047F-018D-4F93-BDA5-58602073B634}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80B48E1F-B9A6-4BD2-A3B6-DA6CC2372F01}"
+	ProjectSection(SolutionItems) = preProject
+		src\.editorconfig = src\.editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC7A0FB5-D69C-4CC7-AF4A-3E867FEA5F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7A0FB5-D69C-4CC7-AF4A-3E867FEA5F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7A0FB5-D69C-4CC7-AF4A-3E867FEA5F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7A0FB5-D69C-4CC7-AF4A-3E867FEA5F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F817047F-018D-4F93-BDA5-58602073B634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F817047F-018D-4F93-BDA5-58602073B634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F817047F-018D-4F93-BDA5-58602073B634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F817047F-018D-4F93-BDA5-58602073B634}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC2F8630-019E-433E-B23C-2BC7E72B3670}
+	EndGlobalSection
+EndGlobal

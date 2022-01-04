@@ -1,0 +1,85 @@
+version: "3"
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    hostname: rabbit
+    image: rabbitmq:3-management
+    networks:
+      masstransit: null
+    ports:
+     - "5672:5672"
+     - "15672:15672"
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    container_name: mssql
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Password12!"
+    networks:
+      masstransit: null
+    ports:
+      - 1433:1433
+
+  hotelservice:
+    image: hotelservice/api
+    build:
+      context: .
+      dockerfile: ./src/MassTransit.Saga.Demo.HotelService/Dockerfile
+    ports:
+     - "5000:80"
+     - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    networks:
+      masstransit: null
+    volumes:
+      - ~/.aspnet/https:/https/:ro
+#      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+#      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  transportationservice:
+    image: transportationservice/api
+    build:
+      context: .
+      dockerfile: ./src/MassTransit.Saga.Demo.TransportationService/Dockerfile
+    ports:
+     - "5002:80"
+     - "5003:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    networks:
+      masstransit: null
+    volumes:
+      - ~/.aspnet/https:/https/:ro
+#      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+#      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  tripservice:
+    image: tripservice/api
+    build:
+      context: .
+      dockerfile: ./src/MassTransit.Saga.Demo.TripService/Dockerfile
+    ports:
+     - "5004:80"
+     - "5005:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    volumes:
+      - ~/.aspnet/https:/https/:ro
+#      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+#      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      masstransit: null
+
+networks:
+  masstransit:
+    driver: bridge
