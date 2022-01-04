@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "MassTransit.Saga.Demo.HotelService": {
+      "commandName": "Project",
+      "launchUrl": "hotel/index.html",
+      "environmentVariables": {
+        "ASPNETCORE_BASEPATH": "/hotel",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5002"
+    },
+    "Docker (1)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/hotel/index.html",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}

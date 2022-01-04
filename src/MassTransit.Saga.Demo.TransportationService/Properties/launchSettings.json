@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "MassTransit.Saga.Demo.TransportationService": {
+      "commandName": "Project",
+      "launchUrl": "transportation/index.html",
+      "environmentVariables": {
+        "ASPNETCORE_BASEPATH": "/transportation",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5003"
+    },
+    "Docker (1)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/transportation/index.html",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}
