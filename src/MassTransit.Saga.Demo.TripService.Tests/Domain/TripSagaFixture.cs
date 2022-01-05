@@ -3,7 +3,7 @@ using MassTransit.Saga.Demo.TripService.Domain;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MassTransit.Saga.Demo.TripService.Tests;
+namespace MassTransit.Saga.Demo.TripService.Tests.Domain;
 
 public class TripSagaFixture: IDisposable
 {

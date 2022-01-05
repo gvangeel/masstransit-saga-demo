@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 using Assert = Xunit.Assert;
 
-namespace MassTransit.Saga.Demo.TripService.Tests;
+namespace MassTransit.Saga.Demo.TripService.Tests.Domain;
 // https://masstransit-project.com/usage/testing.html#test-setup
 
 public class TripStateMachineShould
