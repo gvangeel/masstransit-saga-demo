@@ -21,7 +21,7 @@ services:
       - 1433:1433
 
   hotelservice:
-    image: hotelservice/api
+    image: masstransit/hotelservice
     build:
       context: .
       dockerfile: ./src/MassTransit.Saga.Demo.HotelService/Dockerfile
@@ -41,7 +41,7 @@ services:
 #      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   transportationservice:
-    image: transportationservice/api
+    image: masstransit/transportationservice
     build:
       context: .
       dockerfile: ./src/MassTransit.Saga.Demo.TransportationService/Dockerfile
@@ -61,7 +61,7 @@ services:
 #      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   tripservice:
-    image: tripservice/api
+    image: masstransit/tripservice
     build:
       context: .
       dockerfile: ./src/MassTransit.Saga.Demo.TripService/Dockerfile

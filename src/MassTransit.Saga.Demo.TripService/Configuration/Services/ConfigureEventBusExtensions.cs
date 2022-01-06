@@ -1,7 +1,6 @@
 ﻿using System;
 using MassTransit.Common;
 using MassTransit.EntityFrameworkCoreIntegration;
-using MassTransit.Saga.Demo.Contracts;
 using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
