@@ -9,77 +9,75 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace MassTransit.Saga.Demo.TransportationService
+namespace MassTransit.Saga.Demo.TransportationService;
+
+/// <summary>
+/// 
+/// </summary>
+public class Startup
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Startup
+    /// <param name="configuration"></param>
+    public Startup(IConfiguration configuration)
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="configuration"></param>
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        Configuration = configuration;
+    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public IConfiguration Configuration { get; }
+    /// <summary>
+    /// 
+    /// </summary>
+    private IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="services"></param>
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCompositionRoot();
-            services.AddRouting();
-            services.AddCustomEventBus();
+    /// <summary>
+    /// This method gets called by the runtime. Use this method to add services to the container.
+    /// </summary>
+    /// <param name="services"></param>
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddCompositionRoot();
+        services.AddRouting();
+        services.AddCustomEventBus();
 
-            services.AddControllers()
-                .ConfigureApiBehaviorOptions(options =>
-                {
-                    options.SuppressModelStateInvalidFilter = true;
-                })
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.Formatting = Formatting.Indented;
-                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-                    options.SerializerSettings.Converters = new List<JsonConverter> { new StringEnumConverter() };
-                })
-                ;
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UsePathBase(Configuration["BasePath"]);
-            if (env.IsDevelopment())
+        services.AddControllers()
+            .ConfigureApiBehaviorOptions(options =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-            app.UseStaticFiles();
-
-            app.UseEndpoints(endpoints =>
+                options.SuppressModelStateInvalidFilter = true;
+            })
+            .AddNewtonsoftJson(options =>
             {
-                endpoints.MapControllers();
-            });
+                options.SerializerSettings.Formatting = Formatting.Indented;
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                options.SerializerSettings.Converters = new List<JsonConverter> { new StringEnumConverter() };
+            })
+            ;
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="app"></param>
+    /// <param name="env"></param>
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UsePathBase(Configuration["BasePath"]);
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseRouting();
+        app.UseStaticFiles();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }

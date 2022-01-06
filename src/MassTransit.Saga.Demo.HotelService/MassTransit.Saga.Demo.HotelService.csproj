@@ -8,9 +8,6 @@
   </PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="flurl.http" Version="3.2.0" />
     <PackageReference Include="masstransit" Version="7.3.0" />
     <PackageReference Include="MassTransit.Analyzers" Version="7.3.0" />
     <PackageReference Include="masstransit.extensions.dependencyinjection" Version="7.3.0" />

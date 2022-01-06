@@ -23,6 +23,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "masstransit", "masstransit.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80B48E1F-B9A6-4BD2-A3B6-DA6CC2372F01}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		src\.editorconfig = src\.editorconfig
 	EndProjectSection
 EndProject

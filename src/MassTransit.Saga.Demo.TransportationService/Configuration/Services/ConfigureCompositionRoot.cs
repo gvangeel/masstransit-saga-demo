@@ -16,7 +16,6 @@ namespace MassTransit.Saga.Demo.TransportationService.Configuration.Services
         /// <returns></returns>
         public static IServiceCollection AddCompositionRoot(this IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddOptions();
             return services;
