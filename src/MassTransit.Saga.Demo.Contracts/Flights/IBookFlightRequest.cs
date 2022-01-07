@@ -1,7 +1,5 @@
 ﻿using System;
 
-// ReSharper disable InconsistentNaming
-
 namespace MassTransit.Saga.Demo.Contracts.Flights
 {
     public interface IBookFlightRequest

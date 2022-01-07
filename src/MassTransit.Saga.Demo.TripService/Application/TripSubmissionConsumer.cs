@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using MassTransit.Saga.Demo.Contracts;
 using MassTransit.Saga.Demo.Contracts.Trips;
 using MassTransit.Saga.Demo.TripService.Domain;
 

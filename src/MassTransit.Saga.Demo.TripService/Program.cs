@@ -1,5 +1,3 @@
-using System;
-using MassTransit.Saga.Demo.TripService.Configuration.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

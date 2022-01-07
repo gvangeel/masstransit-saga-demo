@@ -1,5 +1,4 @@
-﻿using System;
-using MassTransit.Saga.Demo.TransportationService.Application;
+﻿using MassTransit.Saga.Demo.TransportationService.Application;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

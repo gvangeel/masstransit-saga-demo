@@ -1,6 +1,4 @@
-﻿// ReSharper disable InconsistentNaming
-
-using System;
+﻿using System;
 
 namespace MassTransit.Saga.Demo.Contracts.Trips
 {

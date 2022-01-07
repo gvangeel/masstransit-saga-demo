@@ -5,7 +5,6 @@ using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
 using Microsoft.Extensions.Logging;
-// ReSharper disable MemberCanBePrivate.Global
 
 namespace MassTransit.Saga.Demo.TripService.Domain
 {
