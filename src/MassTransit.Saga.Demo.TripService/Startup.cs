@@ -49,16 +49,7 @@ namespace MassTransit.Saga.Demo.TripService
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.SuppressModelStateInvalidFilter = true;
-                })
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.Formatting = Formatting.Indented;
-                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-                    options.SerializerSettings.Converters = new List<JsonConverter> { new StringEnumConverter() };
-                })
-                ;
+                });
         }
 
         /// <summary>
