@@ -1,5 +1,4 @@
 ﻿using System;
-using MassTransit.Common;
 using MassTransit.EntityFrameworkCoreIntegration;
 using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
@@ -43,7 +42,6 @@ namespace MassTransit.Saga.Demo.TripService.Configuration.Services
                         {
                             builder.UseSqlServer(configuration.GetConnectionString("trip-database"));
                         });
-
                         r.CustomizeQuery(trips => trips
                             .Include(_ => _.BookedFlights)
                             .Include(_ => _.HotelBooking));
@@ -53,12 +51,7 @@ namespace MassTransit.Saga.Demo.TripService.Configuration.Services
 
                 x.UsingRabbitMq((context, configurator) =>
                 {
-                    configurator.Host("localhost");
-                    if (Container.IsRunningInContainer)
-                    {
-                        configurator.Host("rabbitmq");
-                    }
-
+                    configurator.Host(configuration.GetConnectionString("RabbitMq"));
                     var endpointNameFormatter = context.GetRequiredService<IEndpointNameFormatter>();
                     EndpointConvention.Map<ISubmitTrip>(new Uri($"queue:{ endpointNameFormatter.Consumer<TripSubmissionConsumer>()}"));
                     EndpointConvention.Map<IBookHotelRequest>(new Uri($"queue:hotel-booking"));

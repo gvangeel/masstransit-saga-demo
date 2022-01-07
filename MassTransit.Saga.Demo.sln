@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.Contr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.HotelService", "src\MassTransit.Saga.Demo.HotelService\MassTransit.Saga.Demo.HotelService.csproj", "{A249EC62-65BD-49E7-8B9E-302D1182F09C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Common", "src\MassTransit.Common\MassTransit.Common.csproj", "{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.TransportationService", "src\MassTransit.Saga.Demo.TransportationService\MassTransit.Saga.Demo.TransportationService.csproj", "{EE912291-A097-4ECB-9E24-4B9498A586A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransit.Saga.Demo.TripService", "src\MassTransit.Saga.Demo.TripService\MassTransit.Saga.Demo.TripService.csproj", "{C4CB9C37-7BEF-46ED-BC05-4B840852C5B4}"
@@ -43,10 +41,6 @@ Global
 		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A249EC62-65BD-49E7-8B9E-302D1182F09C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB55C72E-CC5E-4B3D-BF45-1AACDF5AD1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE912291-A097-4ECB-9E24-4B9498A586A3}.Release|Any CPU.ActiveCfg = Release|Any CPU

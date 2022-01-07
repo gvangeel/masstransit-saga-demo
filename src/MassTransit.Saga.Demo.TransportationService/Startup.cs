@@ -38,7 +38,7 @@ public class Startup
     {
         services.AddCompositionRoot();
         services.AddRouting();
-        services.AddCustomEventBus();
+        services.AddCustomEventBus(Configuration);
 
         services.AddControllers()
             .ConfigureApiBehaviorOptions(options =>

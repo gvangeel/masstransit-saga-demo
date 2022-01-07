@@ -40,7 +40,7 @@ namespace MassTransit.Saga.Demo.HotelService
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddCompositionRoot();
-            services.AddCustomEventBus();
+            services.AddCustomEventBus(Configuration);
             services.AddRouting();
 
             services.AddControllers()

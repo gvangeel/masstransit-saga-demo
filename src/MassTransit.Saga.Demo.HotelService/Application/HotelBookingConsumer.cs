@@ -9,7 +9,7 @@ namespace MassTransit.Saga.Demo.HotelService.Application
         public async Task Consume(ConsumeContext<IBookHotelRequest> context)
         {
             await Task.Delay(TimeSpan.FromSeconds(15));
-            await context.RespondAsync<IHotelBooked>(new
+            await context.Publish<IHotelBooked>(new
             {
                 context.Message.TripId,
                 Stars = context.Message.RequiredStars,

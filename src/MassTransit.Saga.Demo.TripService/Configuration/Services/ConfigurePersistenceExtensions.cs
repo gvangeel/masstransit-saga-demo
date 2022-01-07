@@ -1,6 +1,4 @@
-﻿using System;
-using MassTransit.Common;
-using MassTransit.Saga.Demo.TripService.Infrastructure;
+﻿using MassTransit.Saga.Demo.TripService.Infrastructure;
 using MassTransit.Saga.Demo.TripService.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,11 +11,6 @@ namespace MassTransit.Saga.Demo.TripService.Configuration.Services
         public static void AddCustomPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionstring = configuration.GetConnectionString("trip-database");
-            if (Container.IsRunningInContainer)
-            {
-                connectionstring = connectionstring.Replace("localhost", "mssql");
-            }
-
             services.AddDbContext<TripDbContext>(builder =>
                 builder.UseSqlServer(connectionstring));
 

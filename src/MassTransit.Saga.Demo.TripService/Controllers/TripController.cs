@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace MassTransit.Saga.Demo.TripService.Controllers
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TripController : ControllerBase
     {
         private readonly IRequestClient<ISubmitTrip> _submitTripClient;
@@ -18,10 +18,10 @@ namespace MassTransit.Saga.Demo.TripService.Controllers
         private readonly IPublishEndpoint _publishEndpoint;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TripController(
-            IRequestClient<ISubmitTrip> submitTripClient, 
+            IRequestClient<ISubmitTrip> submitTripClient,
             IRequestClient<ITripStateRequest> tripStateRequestClient,
             IPublishEndpoint publishEndpoint)
         {
@@ -31,7 +31,7 @@ namespace MassTransit.Saga.Demo.TripService.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="requiredStars"></param>
         /// <param name="destination"></param>
@@ -65,7 +65,7 @@ namespace MassTransit.Saga.Demo.TripService.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace MassTransit.Saga.Demo.TripService.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="id"></param>
         /// <param name="reason"></param>

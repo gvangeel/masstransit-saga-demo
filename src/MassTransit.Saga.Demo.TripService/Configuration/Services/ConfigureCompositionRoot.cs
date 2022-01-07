@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MassTransit.Saga.Demo.TripService.Configuration.Services
@@ -14,9 +13,8 @@ namespace MassTransit.Saga.Demo.TripService.Configuration.Services
         /// 
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddCompositionRoot(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddCompositionRoot(this IServiceCollection services)
         {
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddOptions();

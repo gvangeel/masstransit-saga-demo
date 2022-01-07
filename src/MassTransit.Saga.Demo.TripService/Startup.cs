@@ -39,7 +39,7 @@ namespace MassTransit.Saga.Demo.TripService
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddCompositionRoot(Configuration);
+            services.AddCompositionRoot();
             services.AddCustomEventBus(Configuration);
             services.AddRouting();
 
