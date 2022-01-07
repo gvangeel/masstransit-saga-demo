@@ -1,41 +1,20 @@
-﻿using System;
+﻿namespace MassTransit.Saga.Demo.TripService.Domain;
 
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-// ReSharper disable UnusedMember.Local
-
-namespace MassTransit.Saga.Demo.TripService.Domain
+public class HotelBooking
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class HotelBooking
+    public Guid HotelBookingId { get; private set; }
+    public int HotelStars { get; private set; }
+    public string HotelName { get; private set; }
+
+    private HotelBooking()
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public Guid HotelBookingId { get; private set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int HotelStars { get; private set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string HotelName { get; private set; }
+        // Required by EFCore
+    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private HotelBooking()
-        {
-            // Required by EFCore
-        }
-
-        internal HotelBooking(Guid hotelBookingId, int hotelStars, string hotelName)
-        {
-            HotelBookingId = hotelBookingId;
-            HotelStars = hotelStars;
-            HotelName = hotelName;
-        }
+    internal HotelBooking(Guid hotelBookingId, int hotelStars, string hotelName)
+    {
+        HotelBookingId = hotelBookingId;
+        HotelStars = hotelStars;
+        HotelName = hotelName;
     }
 }

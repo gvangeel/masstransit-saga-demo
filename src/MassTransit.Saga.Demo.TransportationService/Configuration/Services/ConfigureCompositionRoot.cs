@@ -1,23 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+﻿namespace MassTransit.Saga.Demo.TransportationService.Configuration.Services;
 
-namespace MassTransit.Saga.Demo.TransportationService.Configuration.Services
+public static class ConfigureCompositionRoot
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class ConfigureCompositionRoot
+    public static IServiceCollection AddCompositionRoot(this IServiceCollection services)
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="services"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddCompositionRoot(this IServiceCollection services)
-        {
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddOptions();
-            return services;
-        }
+        services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddOptions();
+        return services;
     }
 }

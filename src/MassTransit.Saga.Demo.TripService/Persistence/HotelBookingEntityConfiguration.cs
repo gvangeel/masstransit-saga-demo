@@ -2,21 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MassTransit.Saga.Demo.TripService.Persistence
+namespace MassTransit.Saga.Demo.TripService.Persistence;
+
+public class HotelBookingEntityConfiguration : IEntityTypeConfiguration<HotelBooking>
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class HotelBookingEntityConfiguration : IEntityTypeConfiguration<HotelBooking>
+    public void Configure(EntityTypeBuilder<HotelBooking> builder)
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="builder"></param>
-        public void Configure(EntityTypeBuilder<HotelBooking> builder)
-        {
-            builder.HasKey(_ => _.HotelBookingId);
-            builder.Property(c => c.HotelBookingId).ValueGeneratedNever();
-        }
+        builder.HasKey(_ => _.HotelBookingId);
+        builder.Property(c => c.HotelBookingId).ValueGeneratedNever();
     }
 }

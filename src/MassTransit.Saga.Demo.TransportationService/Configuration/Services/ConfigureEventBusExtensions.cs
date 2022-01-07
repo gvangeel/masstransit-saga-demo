@@ -1,27 +1,24 @@
 ﻿using MassTransit.Saga.Demo.TransportationService.Application;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace MassTransit.Saga.Demo.TransportationService.Configuration.Services
+namespace MassTransit.Saga.Demo.TransportationService.Configuration.Services;
+
+public static class ConfigureEventBusExtensions
 {
-    public static class ConfigureEventBusExtensions
+    public static void AddCustomEventBus(this IServiceCollection services, IConfiguration configuration)
     {
-        public static void AddCustomEventBus(this IServiceCollection services, IConfiguration configuration)
+        services.AddMassTransit(x =>
         {
-            services.AddMassTransit(x =>
+            x.SetKebabCaseEndpointNameFormatter();
+
+            x.AddConsumersFromNamespaceContaining<FlightBookingConsumer>();
+
+            x.UsingRabbitMq((context, configurator) =>
             {
-                x.SetKebabCaseEndpointNameFormatter();
-
-                x.AddConsumersFromNamespaceContaining<FlightBookingConsumer>();
-
-                x.UsingRabbitMq((context, configurator) =>
-                {
-                    configurator.Host(configuration.GetConnectionString("RabbitMq"));
-                    configurator.ConfigureEndpoints(context);
-                });
+                configurator.Host(configuration.GetConnectionString("RabbitMq"));
+                configurator.ConfigureEndpoints(context);
             });
+        });
 
-            services.AddMassTransitHostedService();
-        }
+        services.AddMassTransitHostedService();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using MassTransit.Saga.Demo.TripService.Domain;
+﻿using MassTransit.Saga.Demo.TripService.Domain;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,5 +36,6 @@ public class TripSagaFixture: IDisposable
     public void Dispose()
     {
         Harness.Dispose();
+        GC.SuppressFinalize(this);
     }
 }
