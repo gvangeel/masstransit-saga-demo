@@ -9,11 +9,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/MassTransit.Saga.Demo.TransportationService/MassTransit.Saga.Demo.TransportationService.csproj", "MassTransit.Saga.Demo.TransportationService/"]
 COPY ["src/MassTransit.Saga.Demo.Contracts/MassTransit.Saga.Demo.Contracts.csproj", "MassTransit.Saga.Demo.Contracts/"]
-COPY ["src/MassTransit.Common/MassTransit.Common.csproj", "MassTransit.Common/"]
 RUN dotnet restore "MassTransit.Saga.Demo.TransportationService/MassTransit.Saga.Demo.TransportationService.csproj"
 COPY ./src/MassTransit.Saga.Demo.TransportationService/ ./MassTransit.Saga.Demo.TransportationService/
 COPY ./src/MassTransit.Saga.Demo.Contracts/ ./MassTransit.Saga.Demo.Contracts/
-COPY ./src/MassTransit.Common/ ./MassTransit.Common/
 WORKDIR "/src/MassTransit.Saga.Demo.TransportationService"
 RUN dotnet build "MassTransit.Saga.Demo.TransportationService.csproj" -c Release -o /app/build
 

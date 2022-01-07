@@ -9,11 +9,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/MassTransit.Saga.Demo.HotelService/MassTransit.Saga.Demo.HotelService.csproj", "MassTransit.Saga.Demo.HotelService/"]
 COPY ["src/MassTransit.Saga.Demo.Contracts/MassTransit.Saga.Demo.Contracts.csproj", "MassTransit.Saga.Demo.Contracts/"]
-COPY ["src/MassTransit.Common/MassTransit.Common.csproj", "MassTransit.Common/"]
 RUN dotnet restore "MassTransit.Saga.Demo.HotelService/MassTransit.Saga.Demo.HotelService.csproj"
 COPY ./src/MassTransit.Saga.Demo.HotelService/ ./MassTransit.Saga.Demo.HotelService/
 COPY ./src/MassTransit.Saga.Demo.Contracts/ ./MassTransit.Saga.Demo.Contracts/
-COPY ./src/MassTransit.Common/ ./MassTransit.Common/
 WORKDIR "/src/MassTransit.Saga.Demo.HotelService"
 RUN dotnet build "MassTransit.Saga.Demo.HotelService.csproj" -c Release -o /app/build
 
