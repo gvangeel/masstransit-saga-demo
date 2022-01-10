@@ -1,4 +1,5 @@
-﻿using MassTransit.Saga.Demo.TripService.Domain;
+﻿using MassTransit.EntityFrameworkCoreIntegration.Audit;
+using MassTransit.Saga.Demo.TripService.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace MassTransit.Saga.Demo.TripService.Persistence;
@@ -15,6 +16,7 @@ public class TripDbContext : DbContext
         modelBuilder.ApplyConfiguration(new TripEntityConfiguration());
         modelBuilder.ApplyConfiguration(new FlightBookingEntityConfiguration());
         modelBuilder.ApplyConfiguration(new HotelBookingEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new AuditMapping("Audit"));
     }
 
     public DbSet<Trip> TripStates { get; set; }

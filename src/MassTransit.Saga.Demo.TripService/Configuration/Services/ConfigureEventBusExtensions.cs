@@ -20,7 +20,7 @@ public static class ConfigureEventBusExtensions
 
             x.AddRequestClient<ISubmitTrip>();
             x.AddRequestClient<ITripStateRequest>();
-
+                
             x.AddSagaStateMachine<TripStateMachine, Trip>(typeof(TripStateMachineDefinition))
                 .EntityFrameworkRepository(r =>
                 {
@@ -35,7 +35,7 @@ public static class ConfigureEventBusExtensions
                         .Include(_ => _.BookedFlights)
                         .Include(_ => _.HotelBooking));
                 });
-
+            
             x.AddConsumersFromNamespaceContaining<TripSubmissionConsumer>();
 
             x.UsingRabbitMq((context, configurator) =>
@@ -47,6 +47,9 @@ public static class ConfigureEventBusExtensions
                 EndpointConvention.Map<IBookFlightRequest>(new Uri($"queue:flight-booking"));
 
                 configurator.ConfigureEndpoints(context);
+                var builder = new DbContextOptionsBuilder();
+                builder.UseSqlServer(configuration.GetConnectionString("trip-database"));
+                configurator.UseEntityFrameworkCoreAuditStore(builder, "Audit");
             });
         });
 
