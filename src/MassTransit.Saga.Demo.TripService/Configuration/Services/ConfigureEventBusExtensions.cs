@@ -1,6 +1,4 @@
 ﻿using MassTransit.EntityFrameworkCoreIntegration;
-using MassTransit.Saga.Demo.Contracts.Flights;
-using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
 using MassTransit.Saga.Demo.TripService.Application;
 using MassTransit.Saga.Demo.TripService.Domain;
@@ -43,8 +41,8 @@ public static class ConfigureEventBusExtensions
                 configurator.Host(configuration.GetConnectionString("RabbitMq"));
                 var endpointNameFormatter = context.GetRequiredService<IEndpointNameFormatter>();
                 EndpointConvention.Map<ISubmitTrip>(new Uri($"queue:{ endpointNameFormatter.Consumer<TripSubmissionConsumer>()}"));
-                EndpointConvention.Map<IBookHotelRequest>(new Uri($"queue:hotel-booking"));
-                EndpointConvention.Map<IBookFlightRequest>(new Uri($"queue:flight-booking"));
+                //EndpointConvention.Map<IBookHotelRequest>(new Uri($"queue:hotel-booking"));
+                //EndpointConvention.Map<IBookFlightRequest>(new Uri($"queue:flight-booking"));
 
                 configurator.ConfigureEndpoints(context);
                 var builder = new DbContextOptionsBuilder();

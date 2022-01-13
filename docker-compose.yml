@@ -1,7 +1,7 @@
 version: "3"
 services:
-  rabbitmq:
-    container_name: rabbitmq
+  rabbitmq-masstransit:
+    container_name: rabbitmq-masstransit
     hostname: rabbit
     image: rabbitmq:3-management
     networks:
@@ -9,9 +9,9 @@ services:
     ports:
      - "5672:5672"
      - "15672:15672"
-  mssql:
+  mssql-masstransit:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
-    container_name: mssql
+    container_name: mssql-masstransit
     environment:
       - "ACCEPT_EULA=Y"
       - "SA_PASSWORD=Password12!"
@@ -20,7 +20,7 @@ services:
     ports:
       - 1433:1433
 
-  hotelservice:
+  hotelservice-masstransit:
     image: masstransit/hotelservice
     build:
       context: .
@@ -29,7 +29,8 @@ services:
      - "5000:80"
      - "5001:443"
     environment:
-      - ConnectionStrings__RabbitMq=amqp://rabbitmq
+      - ConnectionStrings__RabbitMq=amqp://guest:guest@rabbitmq-masstransit
+      - ConnectionStrings__hotel-database=Server=mssql-masstransit;Database=hotelbooking;Persist Security Info=False;User ID=sa;Password=Password12!;Encrypt=False;TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
@@ -41,7 +42,7 @@ services:
 #      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 #      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-  transportationservice:
+  transportationservice-masstransit:
     image: masstransit/transportationservice
     build:
       context: .
@@ -50,7 +51,8 @@ services:
      - "5002:80"
      - "5003:443"
     environment:
-      - ConnectionStrings__RabbitMq=amqp://guest:guest@rabbitmq
+      - ConnectionStrings__RabbitMq=amqp://guest:guest@rabbitmq-masstransit
+      - ConnectionStrings__flight-database=Server=mssql-masstransit;Database=flights;Persist Security Info=False;User ID=sa;Password=Password12!;Encrypt=False;TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
@@ -62,8 +64,8 @@ services:
 #      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 #      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-  tripservice:
-    image: masstransit/tripservice
+  tripservice-masstransit:
+    image: masstransit/tripservice-masstransit
     build:
       context: .
       dockerfile: ./src/MassTransit.Saga.Demo.TripService/Dockerfile
@@ -71,8 +73,8 @@ services:
      - "5004:80"
      - "5005:443"
     environment:
-      - ConnectionStrings__RabbitMq=amqp://guest:guest@rabbitmq
-      - ConnectionStrings__trip-database=Server=mssql;Database=tripping;Persist Security Info=False;User ID=sa;Password=Password12!;Encrypt=False;TrustServerCertificate=True;
+      - ConnectionStrings__RabbitMq=amqp://guest:guest@rabbitmq-masstransit
+      - ConnectionStrings__trip-database=Server=mssql-masstransit;Database=tripping;Persist Security Info=False;User ID=sa;Password=Password12!;Encrypt=False;TrustServerCertificate=True;
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Passw0rd
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx

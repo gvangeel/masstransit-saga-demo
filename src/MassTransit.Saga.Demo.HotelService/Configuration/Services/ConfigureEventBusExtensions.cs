@@ -10,7 +10,7 @@ public static class ConfigureEventBusExtensions
         {
             x.SetKebabCaseEndpointNameFormatter();
 
-            x.AddConsumersFromNamespaceContaining<HotelBookingConsumer>();
+            x.AddConsumersFromNamespaceContaining<TripAllFlightsBookedConsumer>();
 
             x.UsingRabbitMq((context, configurator) =>
             {

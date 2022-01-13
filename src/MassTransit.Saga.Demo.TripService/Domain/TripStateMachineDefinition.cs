@@ -29,7 +29,9 @@ public class TripStateMachineDefinition : SagaDefinition<Trip>
         sagaConfigurator.Message<ITripRegistrationRequest>(x =>
             x.UsePartitioner(partition, m => m.Message.TripId));
         sagaConfigurator.Message<IFlightBooked>(x =>
-            x.UsePartitioner(partition, m => m.Message.TripId));
+        {
+            x.UsePartitioner(partition, m => m.Message.TripId);
+        });
         sagaConfigurator.Message<IHotelBooked>(x =>
             x.UsePartitioner(partition, m => m.Message.TripId));
         sagaConfigurator.Message<ITripCancellationRequest>(x =>

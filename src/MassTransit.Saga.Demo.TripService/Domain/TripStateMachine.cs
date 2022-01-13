@@ -87,33 +87,21 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
     {
         context.Instance.Initialize(context.Data);
         var consumeContext = context.GetPayload<ConsumeContext>();
-        await consumeContext.Publish<IBookFlightRequest>(new
-        {
+        await consumeContext.Publish<ITripRegistered>(new {
             TripId = context.Instance.CorrelationId,
-            DayOfFlight = context.Instance.Start,
-            IsOutbound = true,
-            From = "home",
-            To = context.Instance.Destination
-        });
-
-        await consumeContext.Publish<IBookFlightRequest>(new
-        {
-            TripId = context.Instance.CorrelationId,
-            DayOfFlight = context.Instance.End,
-            IsOutbound = false,
-            From = context.Instance.Destination,
-            To = "home"
+            context.Instance.RequiredStars,
+            context.Instance.Destination,
+            context.Instance.Start,
+            context.Instance.End
         });
     }
 
     private static async Task HandleAllFlightsBooked(BehaviorContext<Trip, IFlightBooked> context)
     {
         var consumeContext = context.GetPayload<ConsumeContext>();
-        await consumeContext.Publish<IBookHotelRequest>(new
+        await consumeContext.Publish<ITripAllFlightsBooked>(new
         {
             TripId = context.Instance.CorrelationId,
-            context.Instance.RequiredStars,
-            Location = context.Instance.Destination
         });
     }
 }

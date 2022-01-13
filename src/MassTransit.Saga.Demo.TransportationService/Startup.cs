@@ -19,6 +19,7 @@ public class Startup
     {
         services.AddCompositionRoot();
         services.AddRouting();
+        services.AddCustomPersistence(Configuration);
         services.AddCustomEventBus(Configuration);
 
         services.AddControllers()
