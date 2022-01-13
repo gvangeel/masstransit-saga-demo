@@ -4,9 +4,9 @@
     "MassTransit.Saga.Demo.TripService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "demo/index.html",
+      "launchUrl": "swagger/index.html",
       "environmentVariables": {
-        "ASPNETCORE_BASEPATH": "/demo",
+        "ASPNETCORE_BASEPATH": "/",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

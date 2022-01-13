@@ -1,7 +1,7 @@
 ﻿using MassTransit.Saga.Demo.HotelService.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace MassTransit.Saga.Demo.TripService.Configuration.Services;
+namespace MassTransit.Saga.Demo.HotelService.Configuration.Services;
 
 internal static class ConfigurePersistenceExtensions
 {

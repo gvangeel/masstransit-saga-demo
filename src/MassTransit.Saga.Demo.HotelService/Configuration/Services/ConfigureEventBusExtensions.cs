@@ -15,7 +15,10 @@ public static class ConfigureEventBusExtensions
             x.UsingRabbitMq((context, configurator) =>
             {
                 configurator.Host(configuration.GetConnectionString("RabbitMq"));
-                configurator.ConfigureEndpoints(context);
+                configurator.ReceiveEndpoint("hotel-service", endpointConfigurator =>
+                {
+                    endpointConfigurator.ConfigureConsumers(context);
+                });
             });
         });
 

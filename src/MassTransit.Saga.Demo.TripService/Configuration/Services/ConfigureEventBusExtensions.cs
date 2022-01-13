@@ -39,12 +39,11 @@ public static class ConfigureEventBusExtensions
             x.UsingRabbitMq((context, configurator) =>
             {
                 configurator.Host(configuration.GetConnectionString("RabbitMq"));
-                var endpointNameFormatter = context.GetRequiredService<IEndpointNameFormatter>();
-                EndpointConvention.Map<ISubmitTrip>(new Uri($"queue:{ endpointNameFormatter.Consumer<TripSubmissionConsumer>()}"));
-                //EndpointConvention.Map<IBookHotelRequest>(new Uri($"queue:hotel-booking"));
-                //EndpointConvention.Map<IBookFlightRequest>(new Uri($"queue:flight-booking"));
-
-                configurator.ConfigureEndpoints(context);
+                configurator.ReceiveEndpoint("trip-service", endpointConfigurator =>
+                {
+                    endpointConfigurator.ConfigureConsumers(context);
+                    endpointConfigurator.ConfigureSagas(context);
+                });
                 var builder = new DbContextOptionsBuilder();
                 builder.UseSqlServer(configuration.GetConnectionString("trip-database"));
                 configurator.UseEntityFrameworkCoreAuditStore(builder, "Audit");

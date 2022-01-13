@@ -11,14 +11,20 @@ public static class ConfigureEventBusExtensions
             x.SetKebabCaseEndpointNameFormatter();
 
             x.AddConsumersFromNamespaceContaining<TripRegisteredConsumer>();
-
             x.UsingRabbitMq((context, configurator) =>
             {
+
                 configurator.Host(configuration.GetConnectionString("RabbitMq"));
-                configurator.ConfigureEndpoints(context);
+                
+                configurator.ReceiveEndpoint("transportation-service", endpointConfigurator =>
+                {
+                    endpointConfigurator.ConfigureConsumers(context);
+                });
             });
         });
+
 
         services.AddMassTransitHostedService();
     }
 }
+

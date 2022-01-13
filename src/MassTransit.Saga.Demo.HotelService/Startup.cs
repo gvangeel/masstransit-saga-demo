@@ -1,5 +1,4 @@
 using MassTransit.Saga.Demo.HotelService.Configuration.Services;
-using MassTransit.Saga.Demo.TripService.Configuration.Services;
 
 namespace MassTransit.Saga.Demo.HotelService;
 
