@@ -94,7 +94,7 @@ public class TripStateMachineShould
                 TripId = tripId,
                 IsOutbound = false,
                 FlightId = NewId.NextGuid(),
-                Cost = 1.00,
+                Cost = (decimal)1.00,
                 Company = "someCompany"
             };
             var inBoundFlightBooked = new
@@ -102,12 +102,12 @@ public class TripStateMachineShould
                 TripId = tripId,
                 IsOutbound = true,
                 FlightId = NewId.NextGuid(),
-                Cost = 1.00,
+                Cost = (decimal)1.00,
                 Company = "someCompany"
             };
             await fixture.Harness.Bus.Publish<IFlightBooked>(outBoundFlightBooked);
             await fixture.Harness.Bus.Publish<IFlightBooked>(inBoundFlightBooked);
-            await Task.Delay(20);
+            await Task.Delay(500);
 
             Assert.Equal(2, await fixture.Harness.Consumed.SelectAsync<IFlightBooked>().Count());
             Assert.Equal(1, await fixture.Harness.Published.SelectAsync<IBookHotelRequest>().Count());
