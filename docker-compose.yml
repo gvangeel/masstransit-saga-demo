@@ -10,7 +10,7 @@ services:
      - "5672:5672"
      - "15672:15672"
   mssql:
-    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: mssql
     environment:
       - "ACCEPT_EULA=Y"

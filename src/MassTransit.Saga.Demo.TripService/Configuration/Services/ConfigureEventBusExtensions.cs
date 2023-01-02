@@ -1,10 +1,8 @@
-﻿using MassTransit.EntityFrameworkCoreIntegration;
-using MassTransit.Saga.Demo.Contracts.Flights;
+﻿using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
 using MassTransit.Saga.Demo.TripService.Application;
 using MassTransit.Saga.Demo.TripService.Domain;
-using MassTransit.Saga.Demo.TripService.Infrastructure;
 using MassTransit.Saga.Demo.TripService.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +23,6 @@ public static class ConfigureEventBusExtensions
                 .EntityFrameworkRepository(r =>
                 {
                     r.UseSqlServer();
-                    r.LockStatementProvider = new LockStatementProvider();
                     r.ConcurrencyMode = ConcurrencyMode.Pessimistic;
                     r.AddDbContext<DbContext, TripDbContext>((provider, builder) =>
                     {
@@ -52,7 +49,5 @@ public static class ConfigureEventBusExtensions
                 configurator.UseEntityFrameworkCoreAuditStore(builder, "Audit");
             });
         });
-
-        services.AddMassTransitHostedService();
     }
 }

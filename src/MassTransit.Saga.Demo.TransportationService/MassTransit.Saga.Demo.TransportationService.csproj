@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <UserSecretsId>232e289b-cdad-4023-b472-85906e985666</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Nullable>Enable</Nullable>
@@ -9,14 +9,13 @@
   </PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="masstransit" Version="7.3.0" />
-    <PackageReference Include="MassTransit.Analyzers" Version="7.3.0" />
-    <PackageReference Include="masstransit.extensions.dependencyinjection" Version="7.3.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.3.0" />
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.1" />
-    <PackageReference Include="microsoft.extensions.platformabstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="masstransit" Version="8.0.10" />
+    <PackageReference Include="MassTransit.Analyzers" Version="8.0.10" />
+    <PackageReference Include="masstransit.extensions.dependencyinjection" Version="7.3.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.10" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
   </ItemGroup>
 
   <ItemGroup>

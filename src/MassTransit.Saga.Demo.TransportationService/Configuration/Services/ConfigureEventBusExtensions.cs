@@ -18,7 +18,5 @@ public static class ConfigureEventBusExtensions
                 configurator.ConfigureEndpoints(context);
             });
         });
-
-        services.AddMassTransitHostedService();
     }
 }

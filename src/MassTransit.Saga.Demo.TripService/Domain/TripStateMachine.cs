@@ -1,6 +1,4 @@
-﻿using Automatonymous;
-using GreenPipes;
-using MassTransit.Saga.Demo.Contracts.Flights;
+﻿using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
 
@@ -32,8 +30,8 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
 
         During(PendingFlightBookingConfirmations,
             When(FlightBooked)
-                .Then(context => context.Instance.Handle(context.Data))
-                .IfElse(context => context.Instance.AllFlightsBooked, 
+                .Then(context => context.Saga.Handle(context.Message))
+                .IfElse(context => context.Saga.AllFlightsBooked, 
                     thenBinder => thenBinder
                         .ThenAsync(HandleAllFlightsBooked)
                         .TransitionTo(PendingHotelBookingConfirmation), 
@@ -45,7 +43,7 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
 
         During(PendingHotelBookingConfirmation,
             When(HotelBooked)
-                .Then(context => context.Instance.Handle(context.Data))
+                .Then(context => context.Saga.Handle(context.Message))
                 .TransitionTo(Completed)
             //.Finalize()
         );
@@ -62,12 +60,12 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
             When(TripStateRequest)
                 .RespondAsync(x => x.Init<ITripState>(new
                 {
-                    TripId = x.Instance.CorrelationId,
+                    TripId = x.Saga.CorrelationId,
                     InVar.Timestamp,
-                    State = x.Instance.CurrentState,
-                    x.Instance.OutboundFlightBooked,
-                    x.Instance.ReturnFlightBooked,
-                    x.Instance.HotelBooked
+                    State = x.Saga.CurrentState,
+                    x.Saga.OutboundFlightBooked,
+                    x.Saga.ReturnFlightBooked,
+                    x.Saga.HotelBooked
                 })));
 
         //SetCompletedWhenFinalized();
@@ -85,23 +83,23 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
 
     private static async Task Initialize(BehaviorContext<Trip, ITripRegistrationRequest> context)
     {
-        context.Instance.Initialize(context.Data);
+        context.Saga.Initialize(context.Message);
         var consumeContext = context.GetPayload<ConsumeContext>();
         await consumeContext.Publish<IBookFlightRequest>(new
         {
-            TripId = context.Instance.CorrelationId,
-            DayOfFlight = context.Instance.Start,
+            TripId = context.Saga.CorrelationId,
+            DayOfFlight = context.Saga.Start,
             IsOutbound = true,
             From = "home",
-            To = context.Instance.Destination
+            To = context.Saga.Destination
         });
 
         await consumeContext.Publish<IBookFlightRequest>(new
         {
-            TripId = context.Instance.CorrelationId,
-            DayOfFlight = context.Instance.End,
+            TripId = context.Saga.CorrelationId,
+            DayOfFlight = context.Saga.End,
             IsOutbound = false,
-            From = context.Instance.Destination,
+            From = context.Saga.Destination,
             To = "home"
         });
     }
@@ -111,9 +109,9 @@ public class TripStateMachine : MassTransitStateMachine<Trip>
         var consumeContext = context.GetPayload<ConsumeContext>();
         await consumeContext.Publish<IBookHotelRequest>(new
         {
-            TripId = context.Instance.CorrelationId,
-            context.Instance.RequiredStars,
-            Location = context.Instance.Destination
+            TripId = context.Saga.CorrelationId,
+            context.Saga.RequiredStars,
+            Location = context.Saga.Destination
         });
     }
 }

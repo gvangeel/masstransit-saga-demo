@@ -1,6 +1,4 @@
-﻿using GreenPipes;
-using MassTransit.Definition;
-using MassTransit.Saga.Demo.Contracts.Flights;
+﻿using MassTransit.Saga.Demo.Contracts.Flights;
 using MassTransit.Saga.Demo.Contracts.Hotels;
 using MassTransit.Saga.Demo.Contracts.Trips;
 
